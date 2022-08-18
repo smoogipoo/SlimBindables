@@ -59,3 +59,22 @@ Trace.Assert(b4.Value == 10);
 
 b4.Value = -100;
 Trace.Assert(b4.Value == 2);
+
+Bindable<int> b5 = new BindableBuilder<int>()
+                   .WithDisable()
+                   .Build();
+
+b5.Value = 1;
+Trace.Assert(b5.Value == 1);
+
+b5.GetDisabled().Value = true;
+
+try
+{
+    b5.Value = 2;
+}
+catch
+{
+}
+
+Trace.Assert(b5.Value == 1);

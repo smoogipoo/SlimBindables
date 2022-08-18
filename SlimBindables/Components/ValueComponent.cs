@@ -14,14 +14,17 @@ namespace SlimBindables.Components
             get => value;
             set
             {
+                if (disabledComponent?.Value == true)
+                    throw new InvalidOperationException($"Can not set value to \"{value?.ToString()}\" as bindable is disabled.");
+
                 this.value = RunMutators(value);
 
-                ValueChanged?.Invoke(value);
-
                 SendMessage(this, (source, target) => target.Value = source.Value);
+                ValueChanged?.Invoke(value);
             }
         }
 
+        private DisabledComponent? disabledComponent;
         private List<IValueMutatingComponent<T>>? mutators;
 
         public void AddMutator(IValueMutatingComponent<T> mutatingComponent)
@@ -34,6 +37,8 @@ namespace SlimBindables.Components
         {
             base.Resolve(bindable, builder);
             Value = RunMutators(Value);
+
+            disabledComponent = builder.MayHave<DisabledComponent>();
         }
 
         public T? RunMutators(T? value)
