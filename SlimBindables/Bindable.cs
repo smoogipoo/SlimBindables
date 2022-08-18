@@ -8,7 +8,7 @@ namespace SlimBindables
 {
     public sealed class Bindable<T> : IBindable
     {
-        public event Action<T>? ValueChanged
+        public event Action<T?>? ValueChanged
         {
             add => valueComponent.ValueChanged += value;
             remove => valueComponent.ValueChanged -= value;
