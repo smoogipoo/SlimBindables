@@ -16,7 +16,7 @@ namespace SlimBindables.Components
             if (lastSendTarget != null)
                 return;
 
-            foreach (BindingsComponent binding in GetBindings())
+            foreach (BindingsComponent binding in EnumerateBindings())
             {
                 lastSendTarget = binding;
 
@@ -29,7 +29,7 @@ namespace SlimBindables.Components
             }
         }
 
-        protected abstract IEnumerable<BindingsComponent> GetBindings();
+        protected abstract IEnumerable<BindingsComponent> EnumerateBindings();
 
         public abstract void BindTo(BindingsComponent other);
 

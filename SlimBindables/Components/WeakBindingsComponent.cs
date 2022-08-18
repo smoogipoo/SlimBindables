@@ -7,7 +7,7 @@ namespace SlimBindables.Components
     {
         private List<WeakReference<BindingsComponent>>? bindings;
 
-        protected override IEnumerable<BindingsComponent> GetBindings()
+        protected override IEnumerable<BindingsComponent> EnumerateBindings()
         {
             if (bindings == null)
                 yield break;

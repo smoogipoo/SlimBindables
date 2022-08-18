@@ -7,7 +7,7 @@ namespace SlimBindables.Components
     {
         private List<BindingsComponent>? bindings;
 
-        protected override IEnumerable<BindingsComponent> GetBindings()
+        protected override IEnumerable<BindingsComponent> EnumerateBindings()
         {
             return bindings ?? Enumerable.Empty<BindingsComponent>();
         }
